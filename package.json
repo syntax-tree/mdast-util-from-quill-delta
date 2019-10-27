@@ -2,8 +2,11 @@
   "name": "mdast-util-from-quill-delta",
   "version": "1.0.0",
   "description": "utility to transform Quill delta to mdast",
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
-  "main": "dist/index.d.js",
+  "types": "dist/index.d.js",
   "scripts": {
     "format": "prettier --write \"src/*.{ts}\" \"./*.{json,md}\" && remark . -qfo && xo --fix",
     "build": "tsc",
