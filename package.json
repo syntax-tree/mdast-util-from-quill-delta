@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "utility to transform Quill delta to mdast",
   "files": [
+    "src",
     "dist"
   ],
   "main": "dist/index.js",

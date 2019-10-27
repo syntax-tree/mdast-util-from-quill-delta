@@ -1,9 +1,10 @@
 import Delta from 'quill-delta'
 import u from 'unist-builder'
 import Op from 'quill-delta/dist/Op'
-import {Root, Content} from 'mdast'
+import {Root, Content, PhrasingContent} from 'mdast'
+import AttributeMap from 'quill-delta/dist/AttributeMap'
 
-const quillAttributeMapping = ({insert, attributes}: Op): Content => {
+const quillInlineContent = ({insert, attributes}: Op): PhrasingContent => {
   if (typeof insert === 'string') {
     let content: Content = u('text', insert)
 
@@ -29,8 +30,23 @@ const quillAttributeMapping = ({insert, attributes}: Op): Content => {
   throw new TypeError('unable to process operation')
 }
 
+const quillBlockContent = (delta: Delta): Content[] => {
+  const blocks: Content[] = []
+  delta.eachLine((line: Delta, attributes: AttributeMap) => {
+    let block: Content = u('paragraph', line.ops.map(quillInlineContent))
+
+    if ('blockquote' in attributes) {
+      block = u('blockquote', [block])
+    }
+
+    blocks.push(block)
+  })
+
+  return blocks
+}
+
 const quillDeltaToMdast = (delta: Delta): Root => {
-  return u('root', delta.ops.map(quillAttributeMapping))
+  return u('root', quillBlockContent(delta))
 }
 
 export = quillDeltaToMdast
