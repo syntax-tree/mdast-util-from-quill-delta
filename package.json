@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf .nyc_output coverage dist",
-    "format": "prettier --write \"src/*.{ts}\" \"./*.{json,md}\" && remark . -qfo && xo --fix",
+    "format": "prettier --write \"src/*.{ts}\" \"./*.json\" && remark . -qfo && xo --fix",
     "prepublishOnly": "npm run clean && npm test && npm run build",
     "test": "nyc ava"
   },
