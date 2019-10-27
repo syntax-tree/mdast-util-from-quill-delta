@@ -1,6 +1,6 @@
 {
   "name": "mdast-util-from-quill-delta",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "utility to transform Quill delta to mdast",
   "files": [
     "src",
@@ -9,8 +9,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "scripts": {
-    "format": "prettier --write \"src/*.{ts}\" \"./*.{json,md}\" && remark . -qfo && xo --fix",
     "build": "tsc",
+    "clean": "rm -rf .nyc_output coverage dist",
+    "format": "prettier --write \"src/*.{ts}\" \"./*.{json,md}\" && remark . -qfo && xo --fix",
+    "prepublishOnly": "npm run clean && npm test && npm run build",
     "test": "nyc ava"
   },
   "repository": {
