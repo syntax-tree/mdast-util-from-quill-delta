@@ -6,6 +6,9 @@
     "baseUrl": "src",
     "outDir": "dist",
     "declaration": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "unist-builder": ["unist-builder.d.ts"]
+    }
   }
 }
