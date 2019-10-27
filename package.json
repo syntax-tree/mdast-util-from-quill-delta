@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/ChristianMurphy/mdast-util-from-quill-delta#readme",
   "dependencies": {
+    "@types/mdast": "^3.0.3",
     "quill-delta": "^4.2.1",
     "unist-builder": "^1.0.4"
   },
