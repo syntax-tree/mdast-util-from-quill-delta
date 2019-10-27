@@ -64,4 +64,4 @@ const quillDeltaToMdast = (delta: Delta): Root => {
   return u('root', quillBlockContent(delta))
 }
 
-export = quillDeltaToMdast
+export default quillDeltaToMdast
