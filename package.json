@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChristianMurphy/mdast-util-from-quill-delta.git"
+    "url": "git+https://github.com/syntax-tree/mdast-util-from-quill-delta.git"
   },
   "keywords": [
     "syntax-tree",
@@ -28,9 +28,9 @@
   "author": "Christian Murphy <christian.murphy.42@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ChristianMurphy/mdast-util-from-quill-delta/issues"
+    "url": "https://github.com/syntax-tree/mdast-util-from-quill-delta/issues"
   },
-  "homepage": "https://github.com/ChristianMurphy/mdast-util-from-quill-delta#readme",
+  "homepage": "https://github.com/syntax-tree/mdast-util-from-quill-delta#readme",
   "dependencies": {
     "@types/mdast": "^3.0.3",
     "quill-delta": "^4.2.1",
