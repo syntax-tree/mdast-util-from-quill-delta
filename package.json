@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "main": "dist/index.d.js",
   "scripts": {
-    "format": "remark . -qfo && prettier --write \"src/*.{ts,json}\" && xo --fix",
+    "format": "prettier --write \"src/*.{ts}\" \"./*.{json,md}\" && remark . -qfo && xo --fix",
     "build": "tsc",
     "test": "nyc ava"
   },
