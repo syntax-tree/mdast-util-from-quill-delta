@@ -6,7 +6,7 @@ on:
     branches: [master]
 jobs:
   build-and-test:
-    name: "${{ matrix.platform }}: node.js ${{ matrix.node-version }}"
+    name: '${{ matrix.platform }}: node.js ${{ matrix.node-version }}'
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest, macos-latest]
@@ -19,7 +19,9 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Build and test
-        run: |
-          npm install
-          npm test
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm test
