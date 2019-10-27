@@ -1,7 +1,7 @@
 import test from 'ava'
 import Delta from 'quill-delta'
 import u from 'unist-builder'
-import {Heading} from 'mdast'
+import {Heading, Image} from 'mdast'
 import deltaToMdast from '.'
 
 test('should handle empty delta', t => {
@@ -75,9 +75,26 @@ test('should handle headers', t => {
   )
 })
 
-test('should not handle custom content types, yet', t => {
+test('should handle image', t => {
   const delta = new Delta([
     {insert: {image: 'https://quilljs.com/assets/images/icon.png'}}
   ])
+  t.deepEqual(
+    deltaToMdast(delta),
+    u('root', [
+      u('paragraph', [
+        u('image', {url: 'https://quilljs.com/assets/images/icon.png'}) as Image
+      ])
+    ])
+  )
+})
+
+test('should not handle undefined content', t => {
+  const delta = new Delta([{insert: undefined}])
+  t.throws(() => deltaToMdast(delta))
+})
+
+test('should not handle unknown custom content type', t => {
+  const delta = new Delta([{insert: {unknown: 'content type'}}])
   t.throws(() => deltaToMdast(delta))
 })
