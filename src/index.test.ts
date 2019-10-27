@@ -1,6 +1,7 @@
 import test from 'ava'
 import Delta from 'quill-delta'
 import u from 'unist-builder'
+import {Heading} from 'mdast'
 import deltaToMdast from '.'
 
 test('should handle empty delta', t => {
@@ -54,6 +55,22 @@ test('should handle block quotes', t => {
     u('root', [
       u('blockquote', [u('paragraph', [u('text', 'test')])]),
       u('blockquote', [u('paragraph', [u('text', 'test')])])
+    ])
+  )
+})
+
+test('should handle headers', t => {
+  const delta = new Delta([
+    {insert: 'header 1'},
+    {insert: '\n', attributes: {header: 1}},
+    {insert: 'header 2'},
+    {insert: '\n', attributes: {header: 2}}
+  ])
+  t.deepEqual(
+    deltaToMdast(delta),
+    u('root', [
+      u('heading', {depth: 1}, [u('text', 'header 1')]) as Heading,
+      u('heading', {depth: 2}, [u('text', 'header 2')]) as Heading
     ])
   )
 })

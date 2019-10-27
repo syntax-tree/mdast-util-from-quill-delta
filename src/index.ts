@@ -1,7 +1,7 @@
 import Delta from 'quill-delta'
 import u from 'unist-builder'
 import Op from 'quill-delta/dist/Op'
-import {Root, Content, PhrasingContent} from 'mdast'
+import {Root, Content, PhrasingContent, Heading} from 'mdast'
 import AttributeMap from 'quill-delta/dist/AttributeMap'
 
 const quillInlineContent = ({insert, attributes}: Op): PhrasingContent => {
@@ -33,10 +33,19 @@ const quillInlineContent = ({insert, attributes}: Op): PhrasingContent => {
 const quillBlockContent = (delta: Delta): Content[] => {
   const blocks: Content[] = []
   delta.eachLine((line: Delta, attributes: AttributeMap) => {
-    let block: Content = u('paragraph', line.ops.map(quillInlineContent))
+    const innerText = line.ops.map(quillInlineContent)
+    let block: Content = u('paragraph', innerText)
 
     if ('blockquote' in attributes) {
       block = u('blockquote', [block])
+    }
+
+    if ('header' in attributes) {
+      block = u(
+        'heading',
+        {depth: attributes.header as 1},
+        innerText
+      ) as Heading
     }
 
     blocks.push(block)
