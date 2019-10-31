@@ -41,7 +41,7 @@
   "dependencies": {
     "@types/mdast": "^3.0.3",
     "quill-delta": "^4.2.1",
-    "unist-builder": "^2.0.0"
+    "unist-builder": "^2.0.1"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^0.1.3",
