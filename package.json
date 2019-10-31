@@ -14,9 +14,10 @@
   "sideEffects": false,
   "scripts": {
     "build": "microbundle build",
-    "clean": "rm -rf .nyc_output coverage dist .rts2_cache_cjs .rts2_cache_es .rts2_cache_umd",
+    "clean": "rimraf .nyc_output coverage dist .rts2_cache_cjs .rts2_cache_es .rts2_cache_umd",
     "format": "prettier --write \"src/*.{ts}\" \"./*.json\" && remark . -qfo && xo --fix",
     "prepublishOnly": "npm run clean && npm test && npm run build",
+    "pretest": "npm run clean",
     "test": "nyc ava"
   },
   "repository": {
@@ -54,17 +55,12 @@
     "prettier": "^1.18.2",
     "remark-cli": "^7.0.0",
     "remark-preset-wooorm": "^6.0.1",
+    "rimraf": "^3.0.0",
     "ts-node": "^8.4.1",
     "xo": "^0.25.3"
   },
   "ava": {
     "compileEnhancements": false,
-    "files": [
-      "src/**/*.test.ts"
-    ],
-    "sources": [
-      "src/**/*"
-    ],
     "extensions": [
       "ts"
     ],
